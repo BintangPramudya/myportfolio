@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Bintang Pramudya</title>
     <link href="dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
@@ -13,6 +14,27 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+    <style>
+        .img-project {
+            transition: transform 0.3s ease;
+            /* Animasi zoom */
+        }
+
+        .img-project:hover {
+            transform: scale(1.1);
+            /* Mengatur skala pembesaran */
+        }
+
+        .img-sertif {
+            transition: transform 0.3s ease;
+            /* Animasi zoom */
+        }
+
+        .img-sertif:hover {
+            transform: scale(1.1);
+            /* Mengatur skala pembesaran */
+        }
+    </style>
 </head>
 
 <body>
@@ -185,62 +207,80 @@
         <div class="container">
             <div class="w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2 ">Portfolio</h4>
-                    <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-white">Project
+                    <h4 class="font-semibold text-lg text-primary mb-2" data-aos="fade-up"
+                    >Portfolio</h4>
+                    <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-white" data-aos="fade-up" >Project
                         Terbaru</h2>
-                    <p class="font-medium text-md text-secondary md:text-lg">Project ini adalah project yang saya buat
-                        untuk saya belajar dan ada juga project tugas kuliah</p>
+                    <!-- <p class="font-medium text-md text-secondary md:text-lg" data-aos="fade-up">Project ini adalah project yang saya buat
+                        untuk saya belajar dan ada juga project tugas kuliah</p> -->
                 </div>
             </div>
-
             <div class="w-full px-4 flex flex-wrap justify-center xl:w-10/12 xl:mx-auto">
                 <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden">
-                        <img src="dist/img/portfolio/project1.png" alt=">CRUD PHP MySql" width="w-full">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="1000">
+                        <img src="dist/img/portfolio/klinikgigi.jpg" alt="Sistem Informasi Klinik Gigi" width="w-full"
+                            class="img-project">
+                    </div>
+                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Sistem Informasi Manajamen
+                        Klinik Gigi: Dentish Health Care</h3>
+                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10
+                        menggunakan bootstrap framework, sweetalert.</p> -->
+                </div>
+                <div class="mb-12 p-4 md:w-1/2">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="2000">
+                        <img src="dist/img/portfolio/project4.png" alt="CRUD Dashboard Admin Laravel" width="w-full"
+                            class="img-project">
+                    </div>
+                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Sistem Manajemen Blog</h3>
+                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10
+                        menggunakan bootstrap framework, sweetalert.</p> -->
+                </div>
+                <div class="mb-12 p-4 md:w-1/2">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="1000">
+                        <img src="dist/img/portfolio/project5.png" alt="Dashboard admin sistem informasi klinik"
+                            width="w-full" class="img-project">
+                    </div>
+                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white"> Sistem
+                        Informasi Manajamen Klinik: Annur Care</h3>
+                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10 untuk
+                        tugas mata kuliah saya</p> -->
+                </div>
+                <div class="mb-12 p-4 md:w-1/2">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="2000">
+                        <img src="dist/img/portfolio/project3.png" alt="CRUD & Sorting Data" width="w-full"
+                            class="img-project">
+                    </div>
+                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD & Sorting Data
+                        Bintang Pramudya</h3>
+                    <!-- <p class="font-medium text-base text-secondary">Aplikasi yang saya buat untuk sorting data dan CRUD
+                        data pasien menggunakan JAVA GUI</p> -->
+                </div>
+                <div class="mb-12 p-4 md:w-1/2">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="1000">
+                        <img src="dist/img/portfolio/project1.png" alt=">CRUD PHP MySql" width="w-full"
+                            class="img-project">
                     </div>
                     <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD PHP MySql
                     </h3>
-                    <p class="font-medium text-base text-secondary">Program Web CRUD yang menggunakan bahasa pemrograman
-                        PHP Native dan Database Mysql</p>
+                    <!-- <p class="font-medium text-base text-secondary">Program Web CRUD yang menggunakan bahasa pemrograman
+                        PHP Native dan Database Mysql</p> -->
                 </div>
                 <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden">
+                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
+                    data-aos-duration="2000">
                         <img src="dist/img/portfolio/project2.png" alt="Web Portfolio Html css
-                        Bootstrap" width="w-full">
+                        Bootstrap" width="w-full" class="img-project">
                     </div>
                     <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Web Portfolio Html css
                         Bootstrap
                     </h3>
-                    <p class="font-medium text-base text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Recusandae dignissimos ullam totam?</p>
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden">
-                        <img src="dist/img/portfolio/project3.png" alt="CRUD & Sorting Data" width="w-full">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD & Sorting Data
-                        Bintang Pramudya</h3>
-                    <p class="font-medium text-base text-secondary">Aplikasi yang saya buat untuk sorting data dan CRUD
-                        data pasien menggunakan JAVA GUI</p>
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden">
-                        <img src="dist/img/portfolio/project4.png" alt="CRUD Dashboard Admin Laravel" width="w-full">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD Dashboard Admin Laravel
-                        10</h3>
-                    <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10
-                        menggunakan bootstrap framework, sweetalert.</p>
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden">
-                        <img src="dist/img/portfolio/project5.png" alt="Dashboard admin sistem informasi klinik"
-                            width="w-full">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Dashboard Admin Sistem
-                        Informasi Klinik</h3>
-                    <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10 untuk
-                        tugas mata kuliah saya</p>
+                    <!-- <p class="font-medium text-base text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Recusandae dignissimos ullam totam?</p> -->
                 </div>
             </div>
         </div>
@@ -252,47 +292,43 @@
         <div class="container">
             <div class="w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2">Sertifikat</h4>
-                    <h2 class="font-bold text-white text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-dark">Sertifikat
+                    <h4 class="font-semibold text-lg text-primary mb-2" data-aos="fade-up">Sertifikat</h4>
+                    <h2 class="font-bold text-white text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-dark" data-aos="fade-up">Sertifikat
                         Saya</h2>
                 </div>
             </div>
             <div class="flex flex-wrap">
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/Bintang Pramudya Panjie Purna - Sertifikat ADSE 2023_page-0001.jpg"
-                            alt="programming" class="w-full">
+                            alt="programming" class="w-full img-sertif" >
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
                                     class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
                                     Asean Data Science Explores</a>
                             </h3>
-                            <p class="font-medium text-base text-secondary mb-6">sertifikat yang saya dapat ketika
-                                mengikuti bootcamp ADSE</p>
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer_page-0001.jpg"
                             alt="Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer"
-                            class="w-full">
+                            class="w-full img-sertif">
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
                                     class="block mb-3 font-semibold text-xl text-dark  dark:text-white">Sertifikat
                                     Juara Terbaik 1 Web Development</a>
                             </h3>
-                            <p class="font-medium text-base text-secondary mb-6">Sertifikat yang saya dapat ketika
-                                mengikuti bootcamp di UNIRA</p>
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/Participants_Bintang Pramudya.png"
-                            alt="Participants_Bintang Pramudya" class="w-full">
+                            alt="Participants_Bintang Pramudya" class="w-full img-sertif">
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
@@ -303,10 +339,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/Bintang_Pramudya_Panjie_Purna.png"
-                            alt="Bintang_Pramudya_Panjie_Purna" class="w-full">
+                            alt="Bintang_Pramudya_Panjie_Purna" class="w-full img-sertif">
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
@@ -317,10 +353,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/sertifikat pemrograman dasar - codepolitan.jpg"
-                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full">
+                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full img-sertif">
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
@@ -330,10 +366,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
                         <img src="dist/img/portfolio/sertifikat software engineering foundamental course - Bintang pramudya panjie purna.jpg"
-                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full">
+                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full img-sertif">
                         <div class="py-8 px-6">
                             <h3>
                                 <a href="#"
@@ -396,8 +432,8 @@
                     <h2 class="font-bold text-4xl text-white mb-5"></h2>
                     <h3 class="font-bold text-2xl mb-2">Hubungi Saya</h3>
                     <p>bintangpramudyapp@gmail.com</p>
-                    <a href="https://www.linkedin.com/in/bintang-pramudya"
-                        target="_blank">www.linkedin.com/in/bintang-pramudya</a>
+                    <a href="https://www.linkedin.com/in/bintang-pramudya" target="_blank"><span
+                            class="hover:text-primary">www.linkedin.com/in/bintang-pramudya</span></a>
                 </div>
                 <div class="w-full px-4 mb-12 md:w-1/3">
                     <h3 class="font-semibold text-white mb-5">Social Media</h3>
@@ -496,6 +532,10 @@
     <!-- back to top end -->
 
     <script src="dist/js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 
 </html>
