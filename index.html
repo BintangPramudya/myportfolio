@@ -1,541 +1,921 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Bintang Pramudya</title>
-    <link href="dist/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bintang Pramudya — Portofolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="icon" type="image/svg+xml" href="images/icon-tab-browser.svg" />
+
+    <!-- Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome lokal (opsional: sesuaikan dengan aset Anda) -->
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+
     <style>
-        .img-project {
-            transition: transform 0.3s ease;
-            /* Animasi zoom */
+        body {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: .4px;
         }
 
-        .img-project:hover {
-            transform: scale(1.1);
-            /* Mengatur skala pembesaran */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .img-sertif {
-            transition: transform 0.3s ease;
-            /* Animasi zoom */
+        @keyframes glow {
+
+            0%,
+            100% {
+                background-color: rgba(30, 64, 175, .4);
+                box-shadow: 0 0 5px rgba(56, 189, 248, .3);
+                color: #cfeaff
+            }
+
+            50% {
+                background-color: rgba(56, 189, 248, .3);
+                box-shadow: 0 0 15px rgba(56, 189, 248, .8);
+                color: #fff
+            }
         }
 
-        .img-sertif:hover {
-            transform: scale(1.1);
-            /* Mengatur skala pembesaran */
+        .animate-glow {
+            animation: glow 2.5s ease-in-out infinite
+        }
+
+        /* Custom scrollbar dark-blue */
+        ::-webkit-scrollbar {
+            width: 10px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b1120;
+            border-radius: 10px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #1e3a8a, #1e40af);
+            border-radius: 10px;
+            box-shadow: 0 0 6px rgba(30, 64, 175, .5)
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #1d4ed8, #2563eb);
+            box-shadow: 0 0 10px rgba(37, 99, 235, .6)
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #1e3a8a #0b1120
         }
     </style>
 </head>
 
-<body>
-    <!-- header start -->
-    <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10 ">
-        <div class="container">
-            <div class="flex items-center justify-between relative">
-                <div class="px-4">
-                    <a href="#home" class="font-bold text-lg text-primary block py-6">Bintang Pramudya</a>
-                </div>
-                <div class="flex items-center px-4">
-                    <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
-                    </button>
-                    <nav id="nav-menu"
-                        class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-500 lg:dark:bg-transparent">
-                        <ul class="block lg:flex">
-                            <li class="group">
-                                <a href="#home"
-                                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Beranda</a>
-                            </li>
-                            <li class="group">
-                                <a href="#about"
-                                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Tentang
-                                    saya</a>
-                            </li>
-                            <li class="group">
-                                <a href="#portfolio"
-                                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Portfolio</a>
-                            </li>
-                            <li class="group">
-                                <a href="#sertifikat"
-                                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Sertifikat</a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact"
-                                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Kontak
-                                    saya</a>
-                            </li>
-                            <li class="flex items-center pl-8 mt-3 lg:mt-0">
-                                <div class="flex">
-                                    <span class="mr-2 text-sm text-slate-500">light</span>
-                                    <input type="checkbox" class="hidden" id="dark-toggle">
-                                    <label for="dark-toggle">
-                                        <div
-                                            class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
-                                            <div
-                                                class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-in-out">
-                                            </div>
-                                        </div>
-                                    </label>
-                                    <span class="ml-2 text-sm text-slate-500">dark</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+<body class="bg-[#0b1120] text-white">
+    <!-- Navbar -->
+    <header id="navbar"
+        class="sticky top-0 z-50 backdrop-blur bg-[#0b1120]/80 transition-[background,box-shadow] duration-300">
+        <div class="max-w-7xl mx-auto px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <a href="#home" class="text-lg font-extrabold text-blue-400 transition duration-300">Bintang
+                    Pramudya</a>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+                <a href="#about" class="text-gray-300 hover:text-blue-400">Tentang</a>
+                <a href="#skills" class="text-gray-300 hover:text-blue-400">Keahlian</a>
+                <a href="#projects" class="text-gray-300 hover:text-blue-400">Proyek</a>
+                <a href="#experience" class="text-gray-300 hover:text-blue-400">Pengalaman</a>
+                <a href="#certificates" class="text-gray-300 hover:text-blue-400">Sertifikat</a>
+                <a href="#contact" class="text-gray-300 hover:text-blue-400">Kontak</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="docs/CV_Bintang Pramudya Panjie Purna v2.pdf"
+                    class="text-sm text-blue-300 font-semibold px-4 py-2 rounded-lg border border-blue-700/60 hover:border-blue-500 hover:text-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,.5)] transition-all duration-300 flex items-center gap-2 bg-blue-950/30 backdrop-blur-sm"
+                    target="_blank">
+                    <i class="fa-regular fa-file-lines"></i> Unduh CV
+                </a>
             </div>
         </div>
     </header>
-    <!-- header end -->
 
-    <!-- hiro section start -->
-    <section id="home" class="pt-36 dark:bg-dark">
-        <div class="container">
-            <div class="flex flex-wrap">
-                <div class="w-full self-center px-4 lg:w-1/2">
-                    <h1 class="text-base font-semibold text-primary md:text-xl">Halo semua 👋, saya <span
-                            class="block font-bold text-dark text-4xl mt-1 lg:text-5xl dark:text-white">Bintang
-                            Pramudya</span></h1>
-                    <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl mt-3"> Mahasiswa | <span
-                            class="text-dark  dark:text-white">ITSK dr. Soepraoen</span></h2>
-                    <p class="font-medium text-secondary mb-10 leading-relaxed italic">"Jika kamu tidak tahan terhadap
-                        penatnya
-                        belajar, maka kamu akan menanggung bahayanya kebodohan" <span
-                            class="font-bold text-dark dark:text-white">- imam syafi'i</span></p>
+    <!-- Hero -->
+    <section id="home" class="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-8 py-20 md:py-28">
+        <div>
+            <span
+                class="text-[11px] font-semibold tracking-wider bg-blue-800/40 px-3 py-1 rounded-full animate-glow inline-flex items-center gap-2">
+                <i class="fa-solid fa-code"></i> FULL‑STACK WEB DEVELOPER
+            </span>
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mt-6">
+                Halo, saya <span class="text-blue-400">Bintang Pramudya</span>
+            </h1>
+            <p class="text-gray-300 mt-6 max-w-xl">
+                Membangun aplikasi web modern dengan performa tinggi menggunakan <b>Laravel</b>, <b>Express
+                    (TypeScript)</b>, <b>Next.js</b>, dan <b>Tailwind CSS</b>. Berfokus pada keamanan, kecepatan, dan
+                pengalaman pengguna.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#projects"
+                    class="inline-flex items-center gap-2 bg-blue-500/20 hover:bg-blue-600/20 px-6 py-2 rounded-lg text-blue-400 border border-blue-400/40 transition">
+                    <i class="fa-solid fa-rocket"></i> Lihat Proyek
+                </a>
+                <a href="#contact"
+                    class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 px-6 py-2 rounded-lg text-white/80 border border-white/10 transition">
+                    <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+                </a>
+            </div>
+            <p
+                class="inline-flex items-center gap-2 bg-blue-900/30 border border-blue-800/50 backdrop-blur-sm text-[12px] text-blue-300 px-3 py-1 rounded-full mt-6 shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                <i class="fa-solid fa-certificate text-blue-400"></i>
+                BNSP — Junior Web Programming
+            </p>
+        </div>
+        <div class="flex items-center justify-center relative z-10">
+            <div class="relative mt-6 md:mt-0">
+                <!-- Foto -->
+                <img src="images/bintangppp.jpg" alt="Hero image"
+                    class="w-80 md:w-96 opacity-80 drop-shadow-[0_0_20px_rgba(56,189,248,.5)] rounded-lg" />
 
-                    <a href="https://wa.link/1pxkkc" target="_blank"
-                        class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Hubungi
-                        saya</a>
+                <!-- Kotak kiri atas -->
+                <div class="absolute -top-5 -left-5 bg-blue-900/60 border border-blue-800/80 rounded-xl px-4 py-3 text-center shadow-lg 
+             backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                    <p class="text-sm text-blue-300 font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-code text-blue-400"></i> Full-Stack Developer
+                    </p>
+                    <p class="text-xs text-gray-400 mt-0.5">Custom, Company, POS</p>
                 </div>
-                <div class="w-full self-end px-4 lg:w-1/2">
-                    <div class="mt-10 lg:mt-9 lg:right-0 ">
-                        <img src="dist/img/Bintangppp.jpg" alt="bintang pramudya"
-                            class="max-w-full mx-auto rounded-full">
+
+                <!-- Kotak kanan bawah -->
+                <div class="absolute -bottom-6 -right-5 bg-blue-900/60 border border-blue-800/80 rounded-xl px-5 py-3 text-center shadow-lg 
+             backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                    <p class="text-sm text-blue-300 font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-briefcase text-blue-400"></i> Tersedia untuk freelance
+                    </p>
+                    <p class="text-xs text-gray-400">Respons cepat via WhatsApp & Email</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16">
+        <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-start">
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Tentang Saya</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    Saya full-stack developer dari Indonesia yang senang menciptakan website dan sistem digital yang
+                    fungsional serta menarik. Mengutamakan efisiensi, struktur kode yang bersih, dan pengalaman pengguna
+                    yang baik. Saat ini saya juga mengembangkan berbagai produk kreatif di bawah brand
+                    <b>LuminaTech</b>.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2 text-[12px]">
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Laravel</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Express + TS</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Next.js</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Leaflet / Web GIS</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Filament + Shield</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">Tailwind CSS</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">MySQL / PostgreSQL</span>
+                    <span class="px-3 py-1 bg-blue-900/30 border border-blue-800 rounded-full">MongoDB</span>
+                </div>
+            </div>
+            <div class="bg-blue-900/20 border border-blue-800 rounded-xl p-6 backdrop-blur-sm">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-screwdriver-wrench text-blue-400"></i> Layanan
+                </h3>
+                <ul class="space-y-3 text-gray-300 text-sm">
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-blue-400 mt-1"></i> Pembuatan website kustom
+                        (Landing page, Company profile, E-Commerce)
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-blue-400 mt-1"></i> Pengembangan sistem web interaktif
+                        (CRUD data, manajemen konten, integrasi API)
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-blue-400 mt-1"></i> Dashboard & Admin Panel
+                        (Laravel Filament, Charting, Role & Permission)
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-blue-400 mt-1"></i> API & Otentikasi (JWT, Session, OAuth
+                        sederhana)
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-blue-400 mt-1"></i> Optimasi performa & deployment
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-[#0d1528] border-t border-blue-900/40">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Keahlian Teknis</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card -->
+                <div class="bg-blue-900/20 border border-blue-800 rounded-xl p-5 hover:bg-blue-900/30 transition">
+                    <div class="w-11 h-11 bg-blue-600/30 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-layer-group text-blue-400"></i>
                     </div>
+                    <h3 class="font-semibold mb-2">Front‑End</h3>
+                    <p class="text-sm text-gray-400">Tailwind CSS, Blade, Next.js, aksesibilitas, komponen UI rapi.</p>
+                </div>
+                <div class="bg-blue-900/20 border border-blue-800 rounded-xl p-5 hover:bg-blue-900/30 transition">
+                    <div class="w-11 h-11 bg-blue-600/30 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-server text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Back‑End</h3>
+                    <p class="text-sm text-gray-400">Laravel, Express (TS), REST API, autentikasi, middleware.</p>
+                </div>
+                <div class="bg-blue-900/20 border border-blue-800 rounded-xl p-5 hover:bg-blue-900/30 transition">
+                    <div class="w-11 h-11 bg-blue-600/30 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-database text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Database</h3>
+                    <p class="text-sm text-gray-400">MySQL, PostgreSQL, MongoDB, migrasi.</p>
+                </div>
+                <div class="bg-blue-900/20 border border-blue-800 rounded-xl p-5 hover:bg-blue-900/30 transition">
+                    <div class="w-11 h-11 bg-blue-600/30 rounded-full flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-code-branch text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">REST API</h3>
+                    <p class="text-sm text-gray-400">
+                        Express & Laravel API, JWT auth, integrasi front-end.
+                    </p>
+
                 </div>
             </div>
         </div>
     </section>
-    <!-- hiro section end -->
 
-    <!-- about start -->
-    <section id="about" class="pt-36 pb-32 dark:bg-dark">
-        <div class="container">
-            <div class="flex flex-wrap">
-                <div class="w-full px-4 mb-10 lg:w-1/2">
-                    <h4 class="font-bold uppercase text-primary text-lg mb-3">Tentang saya</h4>
-                    <h2 class="font-bold text-dark text-3xl mb-5 max-w-md lg:text-4xl  dark:text-white">Bintang Pramudya
-                    </h2>
-                    <p class="font-medium text-base text-secondary max-w-xl">Saya adalah seorang remaja berusia 20 tahun
-                        yang telah menyelesaikan pendidikan SMA jurusan IPA dan saat ini sedang menempuh pendidikan S1
-                        di bidang Informatika di Malang, dengan fokus pada pengembangan web fullstack. Saya memiliki
-                        pemahaman mendalam tentang teknologi dan bahasa pemrograman yang digunakan dalam pengembangan
-                        web, baik di sisi front-end maupun back-end. Dengan semangat belajar yang tinggi dan kemampuan
-                        adaptasi terhadap teknologi terbaru, saya berharap dapat bekerja sebagai fullstack web developer
-                        untuk mengasah keahlian, menambah pengalaman praktis, dan berkontribusi dalam tim yang dinamis
-                        dan inovatif.</p>
-                </div>
-                <div class="w-full px-4 lg:w-1/2">
-                    <h3 class="font-bold text-dark text-2xl mb-4 lg:text-3xl lg:pt-10  dark:text-white">Mari berteman
-                    </h3>
-                    <p class="font-medium text-base text-secondary mb-6 lg:text-lg">Jika Anda ingin terhubung dengan
-                        saya melalui media sosial, jangan ragu untuk mencari saya di platform favorit Anda! Saya selalu
-                        terbuka untuk berinteraksi, berbagi ide, atau menjawab pertanyaan serta kritik dan saran yang
-                        mungkin Anda miliki. Kirim pesan langsung atau tinggalkan komentar di postingan saya - saya
-                        sangat menantikan untuk berbagi pengalaman dan mendengar pandangan Anda! </p>
-                    <div class="flex items-center">
-                        <!-- youtube -->
-                        <a href="https://youtube.com/bintangpramudya" target="_blank"
-                            class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                            <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <title>YouTube</title>
-                                <path
-                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                            </svg></a>
+    <!-- Projects -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-5">Proyek Yang Pernah Saya Buat</h2>
+            <div class="flex items-end justify-end gap-4 mb-8">
 
-                        <!-- instagram -->
-                        <a href="https://instagram.com/bintangp3_" target="_blank"
-                            class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                            <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <title>Instagram</title>
-                                <path
-                                    d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
-                            </svg></a>
-
-                        <!-- discord -->
-                        <a href="https://discord.gg/uTyKyScN" target="_blank"
-                            class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                            <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <title>Discord</title>
-                                <path
-                                    d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
-                            </svg></a>
-
-                        <!-- facebook -->
-                        <a href="https://www.facebook.com/bintang.pramudya.7186?locale=id_ID" target="_blank"
-                            class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                            <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <title>Facebook</title>
-                                <path
-                                    d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
-                            </svg></a>
-
-                    </div>
-                </div>
+                <a href="https://github.com/BintangPramudya" target="_blank"
+                    class="text-sm text-blue-300 hover:text-blue-400 flex items-center gap-2">
+                    <i class="fa-brands fa-github"></i> Lihat Semua
+                </a>
             </div>
-        </div>
-    </section>
-    <!-- about end -->
 
-    <!-- portfolio start -->
-    <section id="portfolio" class="pt-36 pb-16 bg-slate-100 dark:bg-slate-800">
-        <div class="container">
-            <div class="w-full px-4">
-                <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2" data-aos="fade-up"
-                    >Portfolio</h4>
-                    <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-white" data-aos="fade-up" >Project
-                        Terbaru</h2>
-                    <!-- <p class="font-medium text-md text-secondary md:text-lg" data-aos="fade-up">Project ini adalah project yang saya buat
-                        untuk saya belajar dan ada juga project tugas kuliah</p> -->
-                </div>
-            </div>
-            <div class="w-full px-4 flex flex-wrap justify-center xl:w-10/12 xl:mx-auto">
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="1000">
-                        <img src="dist/img/portfolio/klinikgigi.jpg" alt="Sistem Informasi Klinik Gigi" width="w-full"
-                            class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Sistem Informasi Manajamen
-                        Klinik Gigi: Dentish Health Care</h3>
-                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10
-                        menggunakan bootstrap framework, sweetalert.</p> -->
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="2000">
-                        <img src="dist/img/portfolio/project4.png" alt="CRUD Dashboard Admin Laravel" width="w-full"
-                            class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Sistem Manajemen Blog</h3>
-                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10
-                        menggunakan bootstrap framework, sweetalert.</p> -->
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="1000">
-                        <img src="dist/img/portfolio/project5.png" alt="Dashboard admin sistem informasi klinik"
-                            width="w-full" class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white"> Sistem
-                        Informasi Manajamen Klinik: Annur Care</h3>
-                    <!-- <p class="font-medium text-base text-secondary">Project ini saya buat menggunakan laravel 10 untuk
-                        tugas mata kuliah saya</p> -->
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="2000">
-                        <img src="dist/img/portfolio/project3.png" alt="CRUD & Sorting Data" width="w-full"
-                            class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD & Sorting Data
-                        Bintang Pramudya</h3>
-                    <!-- <p class="font-medium text-base text-secondary">Aplikasi yang saya buat untuk sorting data dan CRUD
-                        data pasien menggunakan JAVA GUI</p> -->
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="1000">
-                        <img src="dist/img/portfolio/project1.png" alt=">CRUD PHP MySql" width="w-full"
-                            class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">CRUD PHP MySql
-                    </h3>
-                    <!-- <p class="font-medium text-base text-secondary">Program Web CRUD yang menggunakan bahasa pemrograman
-                        PHP Native dan Database Mysql</p> -->
-                </div>
-                <div class="mb-12 p-4 md:w-1/2">
-                    <div class="rounded-md shadow-md overflow-hidden" data-aos="zoom-in"
-                    data-aos-duration="2000">
-                        <img src="dist/img/portfolio/project2.png" alt="Web Portfolio Html css
-                        Bootstrap" width="w-full" class="img-project">
-                    </div>
-                    <h3 class="font-semibold text-xl text-dark mt-5 mb-3  dark:text-white">Web Portfolio Html css
-                        Bootstrap
-                    </h3>
-                    <!-- <p class="font-medium text-base text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Recusandae dignissimos ullam totam?</p> -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- portfolio end -->
-
-    <!-- SERTIFIKAT START -->
-    <section id="sertifikat" class=" pt-36 pb-32 bg-slate-800 dark:bg-slate-300">
-        <div class="container">
-            <div class="w-full px-4">
-                <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2" data-aos="fade-up">Sertifikat</h4>
-                    <h2 class="font-bold text-white text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-dark" data-aos="fade-up">Sertifikat
-                        Saya</h2>
-                </div>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/Bintang Pramudya Panjie Purna - Sertifikat ADSE 2023_page-0001.jpg"
-                            alt="programming" class="w-full img-sertif" >
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
-                                    Asean Data Science Explores</a>
-                            </h3>
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Project 1: LUNG.AI -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
+                    <!-- Image Wrapper with Overlay -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/LungAi.png"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="LUNG.AI" />
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/LungAi.png')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer_page-0001.jpg"
-                            alt="Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer"
-                            class="w-full img-sertif">
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark  dark:text-white">Sertifikat
-                                    Juara Terbaik 1 Web Development</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/Participants_Bintang Pramudya.png"
-                            alt="Participants_Bintang Pramudya" class="w-full img-sertif">
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
-                                    bootcamp Metaverse International Symposium: Empowering Virutal Reality &
-                                    Metaverse Technology For Various Sectors of Life in the Future</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/Bintang_Pramudya_Panjie_Purna.png"
-                            alt="Bintang_Pramudya_Panjie_Purna" class="w-full img-sertif">
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
-                                    Webinar "Menjadi Ahli Keamanan Siber dengan Wazuh: Pengenalan untuk Pemula"</a>
-                            </h3>
 
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">LUNG.AI — Prediksi Penyakit Paru</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Aplikasi tanya-jawab bertenaga ML (Random Forest, Naive Bayes, XGBoost) untuk prediksi
+                            cepat.
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Tailwind CSS</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">ML</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">MySQL</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">OpenAI</span>
+                        </div>
+                        <div class="mt-4 flex gap-3">
+                            <a href="#"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <!-- <a href="https://github.com/BintangPramudya" target="_blank"
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a> -->
                         </div>
                     </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/sertifikat pemrograman dasar - codepolitan.jpg"
-                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full img-sertif">
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
-                                    belajar saya di CODEPOLITAN materi pemrograman dasar</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3" data-aos="zoom-in" data-aos-duration="500">
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10 dark:bg-slate-800">
-                        <img src="dist/img/portfolio/sertifikat software engineering foundamental course - Bintang pramudya panjie purna.jpg"
-                            alt="sertifikat pemrograman dasar - codepolitan" class="w-full img-sertif">
-                        <div class="py-8 px-6">
-                            <h3>
-                                <a href="#"
-                                    class="block mb-3 font-semibold text-xl text-dark dark:text-white">Sertifikat
-                                    Software Engineering Foundamental Course - RevoU</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- blog end -->
+                </article>
 
-    <!-- contact start -->
-    <section id="contact" class="pt-36 pb-32 dark:bg-slate-800">
-        <div class="container">
-            <div class="e-full px-4">
-                <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-semibold text-lg text-primary mb-2 ">Kontak saya</h4>
-                    <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl  dark:text-white">Hubungi Saya
-                    </h2>
-                    <p class="font-medium text-md text-secondary md:text-lg">Jika anda tertarik dengan web yang saya
-                        buat bisa hubungi saya</p>
-                </div>
-            </div>
-            <form>
-                <div class="w-full lg:w-2/3 lg:mx-auto">
-                    <div class="w-full px-4 mb-8">
-                        <label for="name" class="text-base text-primary font-bold">Nama</label>
-                        <input type="text" id="name"
-                            class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                    </div>
-                    <div class="w-full px-4 mb-8">
-                        <label for="email" class="text-base text-primary font-bold">Email</label>
-                        <input type="email" id="email"
-                            class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                    </div>
-                    <div class="w-full px-4 mb-8">
-                        <label for="message" class="text-base text-primary font-bold">Pesan</label>
-                        <textarea type="email" id="email"
-                            class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:border-primary h-32">
-                    </textarea>
-                    </div>
-                    <div class="w-full px-4">
-                        <button
-                            class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">Kirim</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!-- contact end -->
+                <!-- Project 2: Web GIS Pindad -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
 
-    <!-- footer start -->
-    <footer class="bg-dark pt-24 pb-12 ">
-        <div class="container">
-            <div class="flex flex-wrap">
-                <div class="w-full px-4 mb-12 text-slate-300 font-medium md:w-1/3">
-                    <h2 class="font-bold text-4xl text-white mb-5"></h2>
-                    <h3 class="font-bold text-2xl mb-2">Hubungi Saya</h3>
-                    <p>bintangpramudyapp@gmail.com</p>
-                    <a href="https://www.linkedin.com/in/bintang-pramudya" target="_blank"><span
-                            class="hover:text-primary">www.linkedin.com/in/bintang-pramudya</span></a>
-                </div>
-                <div class="w-full px-4 mb-12 md:w-1/3">
-                    <h3 class="font-semibold text-white mb-5">Social Media</h3>
-                    <ul class="text-slate-300">
-                        <li>
-                            <a href="https://instagram.com/bintangp3_" target="_blank"
-                                class="inline-block text-base hover:text-primary mb-3">Instagram</a>
-                        </li>
-                        <li>
+                    <!-- Image Wrapper -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/dora-gis.png"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="Web GIS Pindad" />
+
+                        <!-- Overlay Info -->
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/dora-gis.png')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">Dora GIS — Lokasi Pindad (Turen)</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Aplikasi peta interaktif berbasis web untuk CRUD tempat (nama, deskripsi, gambar,
+                            koordinat).
+                            Dilengkapi admin untuk manajemen data.
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Express</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Leaflet</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Bootstrap</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">MongoDB</span>
+                        </div>
+
+
+                        <!-- <div class="mt-4 flex gap-3">
+                            <a href="#"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
                             <a href="https://github.com/BintangPramudya" target="_blank"
-                                class="inline-block text-base hover:text-primary mb-3">GitHub</a>
-                        </li>
-                        <li>
-                            <a href="https://linkedin.com/in/bintang-pramudya" target="_blank"
-                                class="inline-block text-base hover:text-primary mb-3">LinkedIn</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-full px-4 mb-12 md:w-1/3">
-                    <h3 class="font-semibold text-white mb-5">Tautan</h3>
-                    <ul class="text-slate-300">
-                        <li>
-                            <a href="#home" class="inline-block text-base hover:text-primary mb-3">Beranda</a>
-                        </li>
-                        <li>
-                            <a href="#about" class="inline-block text-base hover:text-primary mb-3">Tentang Saya</a>
-                        </li>
-                        <li>
-                            <a href="#portfolio" class="inline-block text-base hover:text-primary mb-3">Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="#sertifikat" class="inline-block text-base hover:text-primary mb-3">Sertifikat</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="w-full pt-10 border-t border-slate-700">
-                <div class="flex items-center justify-center mb-5">
-                    <!-- youtube -->
-                    <a href="https://youtube.com/bintangpramudya" target="_blank"
-                        class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                        <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>YouTube</title>
-                            <path
-                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                        </svg></a>
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a>
+                        </div>  -->
+                    </div>
+                </article>
 
-                    <!-- instagram -->
-                    <a href="https://instagram.com/bintangp3_" target="_blank"
-                        class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                        <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>Instagram</title>
-                            <path
-                                d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
-                        </svg></a>
+                <!-- Project 3: Dentish Health Care -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
 
-                    <!-- discord -->
-                    <a href="https://discord.gg/uTyKyScN" target="_blank"
-                        class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                        <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>Discord</title>
-                            <path
-                                d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
-                        </svg></a>
+                    <!-- Image Wrapper -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/project_klinik_detail2.jpg"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="Dentish Health Care" />
 
-                    <!-- facebook -->
-                    <a href="https://www.facebook.com/bintang.pramudya.7186?locale=id_ID" target="_blank"
-                        class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-slate-300 border border-slate-300 hover:border-primary hover:bg-primary hover:text-white ">
-                        <svg role="img" width="20" class="fill-current" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <title>Facebook</title>
-                            <path
-                                d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
-                        </svg></a>
+                        <!-- Overlay Info -->
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/project_klinik_detail2.jpg')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                </div>
-                <p class="font-medium text-sm text-white text-center">© Copyright 2023 - 2024 Bintang Pramudya. All
-                    rights reserved.</p>
-                <p class="font-medium text-sm text-slate-500 text-center ">Dibuat oleh <a
-                        href="https://instagram.com/bintangp3_" target="_blank" class="font-bold text-primary">Bintang
-                        Pramudya</a> </p>
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">Dentish Health Care</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Sistem manajemen klinik gigi berbasis web untuk mengatur jadwal pasien, rekam medis,
+                            dan administrasi dokter dan perawat. Menyediakan autentikasi aman, panel admin responsif,
+                            serta dashboard analitik kesehatan pasien.
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Filament</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Tailwind CSS</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Mysql</span>
+                        </div>
+
+                        <div class="mt-4 flex gap-3">
+                            <a href="#"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/BintangPramudya" target="_blank"
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: LuminaTech -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
+
+                    <!-- Image Wrapper -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/LuminaTech.png"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="LuminaTech" />
+
+                        <!-- Overlay Info -->
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/LuminaTech.png')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">LuminaTech — Jasa Pembuatan Website</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Platform kreatif yang menyediakan layanan pembuatan website, desain, dan produk digital
+                            seperti template Canva dan ebook.
+                            Dirancang untuk membantu bisnis tampil profesional di era digital.
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Tailwind CSS</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Filament</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Mysql</span>
+                        </div>
+
+                        <div class="mt-4 flex gap-3">
+                            <a href="#"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                            <!-- <a href="https://github.com/BintangPramudya" target="_blank"
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a>  -->
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5: POS System -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
+
+                    <!-- Image Wrapper -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/pos.png"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="POS System" />
+
+                        <!-- Overlay Info -->
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/pos.png')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">POS System — Kasir Modern</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Sistem kasir berbasis web untuk pengelolaan transaksi, stok barang, dan laporan penjualan
+                            harian.
+                            Dibangun dengan stack modern dan antarmuka yang bersih serta cepat digunakan.
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Filament</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Tailwind CSS</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">MySQL</span>
+                        </div>
+
+                        <div class="mt-4 flex gap-3">
+                            <a href="#"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/BintangPramudya" target="_blank"
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6: PPKO HMPK -->
+                <article
+                    class="group relative bg-blue-900/20 border border-blue-800 rounded-2xl overflow-hidden hover:bg-blue-900/30 transition flex flex-col">
+
+                    <!-- Image Wrapper -->
+                    <div class="relative overflow-hidden">
+                        <img src="images/ppko-hmpk.png"
+                            class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
+                            alt="Website PPKO HMPK" />
+
+                        <!-- Overlay Info -->
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button onclick="openImage('images/ppko-hmpk.png')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h3 class="text-lg font-semibold">PPKO HMPK — Website Organisasi</h3>
+                        <p class="text-sm text-gray-400 mt-2 flex-1">
+                            Website resmi kegiatan PPKO HMPK yang menampilkan dokumentasi acara, galeri kegiatan, dan
+                            informasi kepengurusan.
+                            Dibangun untuk mempermudah publikasi dan arsip digital organisasi.
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-blue-300/90">
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Laravel</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">Bootstrap</span>
+                            <span class="px-2 py-0.5 bg-blue-800/40 rounded">MySQL</span>
+                        </div>
+
+                        <div class="mt-4 flex gap-3">
+                            <a href="https://ppko-hmpk.com" target="_blank"
+                                class="text-sm text-blue-300 border border-blue-400/40 px-3 py-1 rounded-lg hover:bg-blue-400/10 hover:text-blue-400 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site
+                            </a>
+                            <!-- <a href="https://github.com/BintangPramudya" target="_blank"
+                                class="text-sm text-gray-400 border border-gray-600/40 px-3 py-1 rounded-lg hover:border-blue-400 hover:text-blue-300 hover:bg-blue-400/10 transition inline-flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i> Repo
+                            </a> -->
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </div>
+    </section>
+
+    <!-- Experience & Education -->
+    <section id="experience" class="py-20 bg-[#0d1528] border-t border-blue-900/40">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Pendidikan & Pengalaman</h2>
+
+            <div class="relative border-s border-blue-800/50 ps-6">
+
+                <!-- Pendidikan -->
+                <div class="mb-8 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-blue-400"></i>
+                        Pendidikan — Teknik Informatika
+                    </h3>
+                    <p class="text-xs text-blue-400/80">2022 — Sekarang</p>
+                    <p class="text-xs text-blue-300">
+                        Institut Teknologi Sains dan Kesehatan RS. dr. Soepraoen Malang
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Mendalami pemrograman web, jaringan komputer, dan pengembangan aplikasi.
+                        Aktif dalam proyek kolaboratif dan riset teknologi AI untuk analisis data kesehatan.
+                    </p>
+                </div>
+
+                <!-- Pengalaman Organisasi 1 -->
+                <div class="mb-8 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-people-group text-blue-400"></i>
+                        Wakil Ketua Pelaksana — Informatics Gathering Night
+                    </h3>
+                    <p class="text-xs text-blue-400/80">2023</p>
+                    <p class="text-xs text-blue-300">
+                        Himpunan Mahasiswa S1 Informatika, ITSK RS. dr. Soepraoen Malang
+                    </p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Mengkoordinasi kegiatan tahunan Informatics Gathering Night, mengelola tim pelaksana,
+                        serta memastikan keberhasilan acara dalam mempererat solidaritas antar mahasiswa informatika.
+                    </p>
+                </div>
+
+                <!-- Pengalaman Organisasi 2 -->
+                <div class="mb-8 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-blue-400"></i>
+                        Ketua Himpunan Mahasiswa Informatika
+                    </h3>
+                    <p class="text-xs text-blue-400/80">2023 — 2024</p>
+                    <p class="text-xs text-blue-300">Hima Informatika — ITSK RS. dr. Soepraoen Malang</p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Memimpin organisasi kemahasiswaan jurusan Informatika, mengatur program kerja bidang akademik
+                        dan non-akademik, serta mendorong kolaborasi antar mahasiswa dalam proyek teknologi kampus.
+                    </p>
+                </div>
+
+                <!-- Stack Praktis -->
+                <div class="mb-8 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-microchip text-blue-400"></i>
+                        Stack Praktis
+                    </h3>
+                    <p class="text-xs text-blue-400/80">Selalu Diperbarui</p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Laravel, Filament + Shield, Express (TS), Next.js, Leaflet, Tailwind CSS,
+                        MySQL/PostgreSQL, Apache, dan Laragon.
+                    </p>
+                </div>
+
+                <!-- Pengalaman 1 -->
+                <div class="mb-8 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-blue-400"></i>
+                        Fullstack Web Developer — Freelance
+                    </h3>
+                    <p class="text-xs text-blue-400/80">2024 — Sekarang</p>
+                    <p class="text-xs text-blue-300">Laravel, Express, Next.js</p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Mengerjakan proyek website custom mulai dari landing page, dashboard, hingga sistem GIS.
+                        Fokus pada clean architecture, integrasi API, dan keamanan autentikasi berbasis token.
+                    </p>
+                </div>
+
+                <!-- Pengalaman 2 -->
+                <div class="mb-2 ms-2">
+                    <span class="absolute -start-1 mt-1 h-3 w-3 rounded-full bg-blue-400"></span>
+                    <h3 class="font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-rocket text-blue-400"></i>
+                        Founder — Luminatech
+                    </h3>
+                    <p class="text-xs text-blue-400/80">2025 — Sekarang</p>
+                    <p class="text-xs text-blue-300">Produk Digital & Web Development</p>
+                    <p class="text-sm text-gray-400 mt-1">
+                        Mendirikan LuminaTech, sebuah studio digital yang fokus pada pengembangan website, desain,
+                        dan produk digital seperti template Canva serta e-book.
+                        Bertanggung jawab pada pengembangan sistem, dan desain antarmuka.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates" class="py-20 border-t border-blue-900/40 bg-[#0b1224]">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Sertifikat</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Sertifikat 1 -->
+                <div
+                    class="group bg-blue-900/20 border border-blue-800 rounded-xl overflow-hidden hover:bg-blue-900/30 transition backdrop-blur-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="images/Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer_page-0001.jpg"
+                            alt="Sertifikat BNSP Junior Web Programming"
+                            class="h-56 w-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button
+                                onclick="openImage('images/Bintang Pramudya Panjie Purna - Sertifikat Peserta Bootcamp Web Developer_page-0001.jpg')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-white">Juara 1 Web Development</h3>
+                        <span class="inline-block mt-1 mb-2 text-xs text-blue-300 bg-blue-900/30 border border-blue-700/40 
+           rounded px-3 py-1 tracking-wide shadow-[0_0_6px_rgba(37,99,235,0.2)] 
+           hover:bg-blue-800/40 transition duration-300">
+                            <i class="fa-solid fa-certificate text-blue-400 mr-1"></i> Universitas Islam Raden Rahmat
+                            (UNIRA) Malang
+                        </span>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Berhasil meraih <b>Juara 1</b> dalam kompetisi Web Development tingkat universitas.
+                            Membangun aplikasi web interaktif dengan pendekatan <em>responsive design</em> dan
+                            penerapan konsep <b>full-stack development</b> menggunakan php dan bootstrap.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Sertifikat 2 -->
+                <div
+                    class="group bg-blue-900/20 border border-blue-800 rounded-xl overflow-hidden hover:bg-blue-900/30 transition backdrop-blur-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="images/sertifikat software engineering foundamental course - Bintang pramudya panjie purna.jpg"
+                            alt="Sertifikat Software Engineering Fundamental Course - Revou"
+                            class="h-56 w-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button
+                                onclick="openImage('images/sertifikat software engineering foundamental course - Bintang pramudya panjie purna.jpg')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-white">Software Engineering Fundamental Course</h3>
+                        <span class="inline-block mt-1 mb-2 text-xs text-blue-300 bg-blue-900/30 border border-blue-700/40 
+           rounded px-3 py-1 tracking-wide shadow-[0_0_6px_rgba(37,99,235,0.2)] 
+           hover:bg-blue-800/40 transition duration-300">
+                            <i class="fa-solid fa-certificate text-blue-400 mr-1"></i> Revou
+                        </span>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Pelatihan dasar HTML, CSS, dan JavaScript dengan proyek akhir pembuatan website responsif,
+                            mengikuti standar industri.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sertifikat 3 -->
+                <div
+                    class="group bg-blue-900/20 border border-blue-800 rounded-xl overflow-hidden hover:bg-blue-900/30 transition backdrop-blur-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="images/Sertifikat Program Komputer_Simulasi Lab Komputer Artificial Intelegence_Pak Teja dkk_EC00202416916_page-0001.jpg"
+                            alt="Sertifikat Program Komputer VR AI Simulation"
+                            class="h-56 w-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div
+                            class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                            <button
+                                onclick="openImage('images/Sertifikat Program Komputer_Simulasi Lab Komputer Artificial Intelegence_Pak Teja dkk_EC00202416916_page-0001.jpg')"
+                                class="text-blue-300 border border-blue-400/40 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold text-white">
+                            Program Komputer — Simulasi Lab Komputer Artificial Intelligence (VR)
+                        </h3>
+                        <span class="inline-block mt-1 mb-2 text-xs text-blue-300 bg-blue-900/30 border border-blue-700/40 
+             rounded px-3 py-1 tracking-wide shadow-[0_0_6px_rgba(37,99,235,0.2)] 
+             hover:bg-blue-800/40 transition duration-300">
+                            <i class="fa-solid fa-vr-cardboard text-blue-400 mr-1"></i>
+                            Virtual Reality Lab
+                        </span>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Pelatihan interaktif berbasis <b>Virtual Reality</b> yang mensimulasikan lingkungan
+                            laboratorium
+                            kecerdasan buatan. Membahas konsep dasar <b>AI</b>, logika pemrograman, serta penerapan
+                            teknologi
+                            <b>3D web dan simulasi digital</b> untuk pembelajaran berbasis imersif.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20">
+        <div class="max-w-5xl mx-auto px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold">Ayo Bangun Sesuatu</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-3">Ceritakan kebutuhan Anda. Saya akan merespons cepat dengan
+                opsi solusi, estimasi waktu, dan langkah selanjutnya.</p>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-3">Hubungi saya pada salah satunya cara di bawah.</p>
+
+            <div class="mt-8 grid md:grid-cols-3 gap-6">
+                <a href="https://wa.me/6282175311273" target="_blank"
+                    class="bg-blue-900/20 border border-blue-800 rounded-xl p-6 hover:bg-blue-900/30 transition flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-2xl text-blue-300"></i>
+                    <span class="text-sm">WhatsApp</span>
+                </a>
+                <a href="mailto:bintangpramudyapp@gmail.com"
+                    class="bg-blue-900/20 border border-blue-800 rounded-xl p-6 hover:bg-blue-900/30 transition flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-envelope text-2xl text-blue-300"></i>
+                    <span class="text-sm">Email</span>
+                </a>
+                <a href="https://www.linkedin.com/in/bintang-pramudya" target="_blank"
+                    class="bg-blue-900/20 border border-blue-800 rounded-xl p-6 hover:bg-blue-900/30 transition flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-linkedin text-2xl text-blue-300"></i>
+                    <span class="text-sm">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0f1d] border-t border-blue-900/40 py-12">
+        <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-10 text-center md:text-left">
+            <div>
+                <h3 class="text-2xl font-extrabold text-blue-400 mb-3">Bintang Pramudya</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Full‑stack web developer. Misi saya: menghadirkan
+                    produk digital yang <em>usable</em>, cepat, dan mudah dirawat.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Navigasi</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#home" class="hover:text-blue-400 transition">Beranda</a></li>
+                    <li><a href="#about" class="hover:text-blue-400 transition">Tentang</a></li>
+                    <li><a href="#projects" class="hover:text-blue-400 transition">Proyek</a></li>
+                    <li><a href="#certificates" class="hover:text-blue-400 transition">Sertifikat</a></li>
+                    <li><a href="#contact" class="hover:text-blue-400 transition">Kontak</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Kontak</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><i class="fa-solid fa-phone text-blue-400 mr-2"></i> +62 821-7531-1273</li>
+                    <li><i class="fa-solid fa-envelope text-blue-400 mr-2"></i> bintangpramudyapp@gmail.com</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Koneksi</h4>
+                <div class="flex justify-center md:justify-start gap-4">
+                    <a href="https://www.facebook.com/bintang.pramudya.7186"
+                        class="text-gray-400 hover:text-blue-400 transition" target="_blank"><i
+                            class="fa-brands fa-facebook text-xl"></i></a>
+                    <a href="https://instagram.com/bintangp3_" class="text-gray-400 hover:text-blue-400 transition"
+                        target="_blank"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="https://www.linkedin.com/in/bintang-pramudya"
+                        class="text-gray-400 hover:text-blue-400 transition" target="_blank"><i
+                            class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="https://github.com/BintangPramudya" class="text-gray-400 hover:text-blue-400 transition"
+                        target="_blank"><i class="fa-brands fa-github text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-10 text-gray-500 text-sm pt-6">© 2025 Bintang Pramudya — All rights reserved.</div>
     </footer>
-    <!-- footer end -->
 
-    <!-- back to to start -->
-    <a href="#home"
-        class="hidden fixed bottom-4 right-4 z-[9999] justify-center items-center h-14 w-14 rounded-full bg-primary p-4 hover:animate-pulse"
-        id="to-top">
-        <span class="block w-5 h-5 border-t-2 border-l-2 rotate-45 mt-2"></span>
-    </a>
-    <!-- back to top end -->
-
-    <script src="dist/js/script.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Scripts -->
     <script>
-      AOS.init();
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('border-b', 'border-blue-900/50', 'shadow-[0_2px_10px_rgba(30,64,175,0.2)]');
+            } else {
+                navbar.classList.remove('border-b', 'border-blue-900/50',
+                    'shadow-[0_2px_10px_rgba(30,64,175,0.2)]');
+            }
+        });
     </script>
+
+    <!-- Modal Preview Gambar -->
+    <script>
+        function openImage(src) {
+            let modal = document.getElementById('imageModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'imageModal';
+                modal.className = `
+        fixed inset-0 flex items-center justify-center z-50 hidden opacity-0
+        transition-opacity duration-500 backdrop-blur-md bg-black/60
+      `;
+                modal.innerHTML = `
+        <div id="modalContent" 
+             class="relative max-w-3xl transform scale-90 transition-transform duration-500">
+          <img id="modalImage" src="" 
+               class="rounded-lg shadow-[0_0_25px_rgba(56,189,248,0.5)] max-h-[80vh] border border-blue-700/40" 
+               alt="Preview">
+          <button onclick="closeImage()" 
+                  class="absolute -top-3 -right-3 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-full shadow-md transition-transform duration-200 hover:scale-110">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>`;
+                document.body.appendChild(modal);
+            }
+
+            const modalImage = document.getElementById('modalImage');
+            const modalContent = document.getElementById('modalContent');
+
+            modalImage.src = src;
+            modal.classList.remove('hidden');
+
+            // Fade-in dan zoom-in
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modalContent.classList.add('scale-100');
+            }, 10);
+
+            // Tutup modal saat klik di luar gambar
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeImage();
+            });
+        }
+
+        function closeImage() {
+            const modal = document.getElementById('imageModal');
+            const modalContent = document.getElementById('modalContent');
+            if (modal && modalContent) {
+                modal.classList.remove('opacity-100');
+                modalContent.classList.remove('scale-100');
+                setTimeout(() => modal.classList.add('hidden'), 400);
+            }
+        }
+    </script>
+
+    <script src="fontawesome/js/all.js"></script>
+    <script src="fontawesome/js/all.min.js"></script>
+    <script src="fontawesome/js/fontawesome.js"></script>
 </body>
 
 </html>
