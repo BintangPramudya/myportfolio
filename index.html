@@ -26,6 +26,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#0a0a0a;color:#d4d4d8;overflow-x:hidden}
+section{scroll-margin-top:80px}
 
 /* Dot grid background */
 body::before{content:'';position:fixed;inset:0;z-index:-2;
@@ -159,7 +160,7 @@ body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-
 @media(max-width:768px){.hamburger{display:block}}
 
 /* Mobile menu */
-#mobileMenu{background:#0d0d0d;border-top:1px solid rgba(255,255,255,.06);max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+#mobileMenu{position:absolute;top:100%;left:0;width:100%;background:#0d0d0d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);z-index:40}
 #mobileMenu.open{max-height:400px}
 #mobileMenu a{display:block;padding:14px 24px;color:#a1a1aa;font-size:15px;border-bottom:1px solid rgba(255,255,255,.04);transition:all .2s;text-decoration:none}
 #mobileMenu a:hover,#mobileMenu a:active,#mobileMenu a.active{color:#60a5fa;background:rgba(59,130,246,.05)}
@@ -675,14 +676,14 @@ body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-
 
                     <!-- Image Wrapper -->
                     <div class="relative overflow-hidden">
-                        <img src="images/luminatech_startup.png"
+                        <img src="images/luminatech.png"
                             class="h-56 w-full object-cover opacity-90 group-hover:opacity-100 transition duration-300 transform group-hover:scale-105"
                             alt="LuminaTech" />
 
                         <!-- Overlay Info -->
                         <div
                             class="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
-                            <button onclick="openImage('images/luminatech_startup.png')"
+                            <button onclick="openImage('images/luminatech.png')"
                                 class="text-blue-300 border border-blue-400/30 hover:bg-blue-400/10 hover:text-blue-400 transition p-3 rounded-full shadow-lg transform hover:scale-110">
                                 <i class="fa-solid fa-magnifying-glass text-2xl"></i>
                             </button>
@@ -1387,11 +1388,12 @@ window.addEventListener('scroll', function() {
     nb.classList.remove('nav-scrolled');
   }
 
-  // Active link tracking
-  var current = '';
+  // Active link tracking using viewport bounds
+  var current = 'home';
   sections.forEach(function(section) {
-    var sectionTop = section.offsetTop;
-    if (pageYOffset >= (sectionTop - 250)) {
+    var rect = section.getBoundingClientRect();
+    // If the section top is above 1/3 of the viewport height, it's considered active
+    if (rect.top <= window.innerHeight / 3) {
       current = section.getAttribute('id');
     }
   });
